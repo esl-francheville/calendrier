@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Calendrier • Connexion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="stylesheet" href="css/auth.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="auth-page">
+
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="logo-area">
+        <img src="logo.png" alt="Logo Calendrier" class="logo-image">
+        <div class="logo-text">
+          <h1>Calendrier</h1>
+          <p class="subtitle">Chaque minute compte</p>
+        </div>
+      </div>
+      <form class="auth-form" onsubmit="return false;">
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="vous@exemple.fr" autocomplete="email" required>
+        </div>
+
+        <div class="input-group">
+          <label for="password">Mot de passe</label>
+          <input id="password" type="password" placeholder="••••••••" autocomplete="current-password" required>
+        </div>
+
+        <div id="error" class="error-message"></div>
+
+        <button type="submit" class="btn btn-primary" onclick="login()">
+          <span>Se connecter</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+
+        <button type="button" class="btn btn-secondary" onclick="resetPassword()">
+          <span>Mot de passe oublié ?</span>
+        </button>
+      </form>
+    </div>
+
+    <div class="auth-bg">
+      <div class="grid-pattern"></div>
+    </div>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+  <script src="js/firebase.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

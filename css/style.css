@@ -1,0 +1,279 @@
+/* VARIABLES & RESET ======================================================== */
+
+:root {
+  /* Backgrounds */
+  --bg-primary: #f7f8fa;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f1f3f5;
+  --surface: #ffffff;
+
+  /* Text */
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+
+  /* Status */
+  --success: #16a34a;
+  --danger: #dc2626;
+
+  /* Borders & shadows */
+  --border: #e5e7eb;
+  --border-soft: #f1f3f5;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+
+  /* Special days */
+  --weekend-bg: #f5f5f5;
+  --weekend-hover: #e4e4e4;
+  --holiday-bg: #e8ecfc;
+  --holiday-accent: #6495ed;
+  --holiday-hover: #d1dafa;
+  --ferie-bg: #ffdedb;
+  --ferie-accent: #dc143c;
+  --ferie-hover: #ffbcb9;
+
+  /* Spacing */
+  --xs: 0.25rem;
+  --sm: 0.5rem;
+  --md: 1rem;
+  --lg: 1.5rem;
+
+  /* Radius */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+
+  /* Fonts */
+  --font-primary: "DM Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-primary);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* APP LAYOUT =============================================================== */
+
+.app-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+
+.app-header {
+  position: sticky;
+  top: 0;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  z-index: 10;
+}
+
+.header-content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--sm) var(--md);
+
+  position: relative; /* pour centrer le groupe central */
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+}
+
+.header-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nav-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  cursor: pointer;
+}
+
+.nav-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.header-title {
+  text-align: center;
+}
+
+.header-title h1 {
+  width: 14ch;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.today-btn {
+  margin-top: var(--xs);
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-tertiary);
+  cursor: pointer;
+}
+
+
+/* MAIN ===================================================================== */
+
+.app-main {
+  flex: 1;
+  padding: var(--lg);
+}
+
+.calendar-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.calendar-header {
+  display: grid;
+  grid-template-columns: 90px 60px minmax(200px, 420px);
+  padding: var(--sm) var(--md);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.calendar-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+
+/* DAY ROW ================================================================== */
+
+.day-row {
+  display: grid;
+  grid-template-columns: 90px 60px minmax(200px, 420px);
+  align-items: center;
+  padding: var(--sm) var(--md);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  transition: background 0.3s ease;
+}
+
+/* Date */
+.col-date {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Inputs */
+.day-row input {
+  width: 100%;
+  padding: 0.35rem 0.4rem;
+  font-size: 0.9rem;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  outline: none;
+}
+
+.day-row input::placeholder {
+  color: var(--text-muted);
+}
+
+.day-row input:focus {
+  background: #f9fafb;
+  border-radius: 4px;
+}
+
+.col-duree input {
+  text-align: center;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+}
+
+
+/* SAVE INDICATOR =========================================================== */
+
+.save-indicator {
+  position: fixed;
+  bottom: var(--lg);
+  right: var(--lg);
+  padding: 0.6rem 1rem;
+  background: var(--success);
+  color: white;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.save-indicator.show { opacity: 1; }
+
+
+/* VACATION DAYS - GRAPHIC STYLE ============================================ */
+
+.day-row.holiday {
+  position: relative;
+  background: var(--holiday-bg);
+  border-left: 4px solid var(--holiday-accent);
+}
+
+.day-row.weekend {
+  background: var(--weekend-bg);
+}
+
+.day-row.ferie {
+  position: relative;
+  background: var(--ferie-bg);
+  border-left: 4px solid var(--ferie-accent);
+}
+
+.day-row.holiday:hover {background: var(--holiday-hover);}
+.day-row.weekend:hover {background: var(--weekend-hover);}
+.day-row.ferie:hover {background: var(--ferie-hover);}
+
+
+/* RESPONSIVE =============================================================== */
+
+@media (max-width: 768px) {
+  .header-content { flex-direction: column; }
+  .header-logo { margin-bottom: 0.25rem; }
+  .header-center { position: static; transform: none; justify-content: center; margin-top: 0; }
+  .day-row { grid-template-columns: 80px 60px 1fr; }
+  .app-main { padding: var(--md); }
+}
